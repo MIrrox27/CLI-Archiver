@@ -9,7 +9,7 @@
 
 
 std::vector<char> get_binary_file(std::string path);
-
+std::vector<char> encode_binary(std::vector<char> binary_file);
 
 
 
