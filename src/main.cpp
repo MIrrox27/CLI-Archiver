@@ -19,9 +19,15 @@ int main() {
   tags["-c"] = [](std::string path) { encode_archive(path); };
   tags["-d "] = [](std::string path) { decode_archive(path); };
 
-
+  std::string tag = __argv[1];
+  std::string path = __argv[2];
+  std::string archive_name = __argv[3];
   
-  std::cout << " -- Pragramm ended without errors..." << std::endl;
+  if (tags.find(tag) != tags.end()) tags[tag](path);
+  else std::cerr << "Invalid arg: " << tag << std::endl;
+  
+  
+  std::cout << " -- Program ended without errors..." << std::endl;
   return 0;
 }
 
