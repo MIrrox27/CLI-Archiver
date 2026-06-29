@@ -8,17 +8,26 @@
 #include <vector>
 #include "encoder.hpp"
 
-  // Скелеты функций
-void encode_archive(std::string path);
-void decode_archive(std::string path);
+
+
+void encode_archive(const std::vector<std::string>& args){ // функция для создания архива
+  // args[0] - 
+  // args[1] - 
+
+  std::vector<char> result = get_binary_file(args[0]);
+  std::cout << args[0] << " " << args[1] << " encode_archive" << std::endl;
+}; 
+
+void decode_archive(const std::vector<std::string>& args){}; // функция для распаковки архива 
+
 
 
 int main(int argc, char* argv[]) {
-  using Callback = std::function<void(std::string)>; // Тип данных для функций
+  using Callback = std::function<void(std::vector<std::string>)>; // Тип данных для функций
 
   std::map<std::string, Callback> tags;
-  tags["-c"] = [](std::string path) { encode_archive(path); };
-  tags["-d "] = [](std::string path) { decode_archive(path); };
+  tags["-c"] = encode_archive;
+  tags["-d "] = decode_archive;
 
   std::cout << argc << std::endl;
   std::cout << argv[1] << std::endl;
@@ -27,21 +36,14 @@ int main(int argc, char* argv[]) {
     
   std::string tag = argv[1];
   std::string path = argv[2];
-  std::string archive_name = argv[3];
+  std::string name = argv[3];
   
-  if (tags.find(tag) != tags.end()) tags[tag](path);
+
+  std::vector<std::string> args = {path, name};
+  if (tags.find(tag) != tags.end()) tags[tag](args);
   else std::cerr << "Invalid arg: " << tag << std::endl;
   
   
   std::cout << " -- Program ended without errors..." << std::endl;
   return 0;
 }
-
-
-
-void encode_archive(std::string path){ // функция для создания архива
-  //std::vector<char> result = get_binary_file(path);
-  std::cout << "encode_archive " << std::endl;
-}; 
-
-void decode_archive(std::string path){}; // функция для распаковки архива 
