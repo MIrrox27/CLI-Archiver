@@ -11,10 +11,12 @@
 
 
 void encode_archive(const std::vector<std::string>& args){ // функция для создания архива
-  // args[0] - 
-  // args[1] - 
+  // args[0] - path
+  // args[1] - new_name
 
   std::vector<char> result = get_binary_file(args[0]);
+
+
   std::cout << args[0] << " " << args[1] << " encode_archive" << std::endl;
 }; 
 
