@@ -55,3 +55,19 @@ std::vector<unsigned char> encode_binary(std::vector<char> binary_file){
   return compressed; // сжатый архив 
 
 }
+
+int wright_encode_to_file(std::vector<unsigned char> compressed, std::string name){
+  std::ofstream out_file(name+".arhive", std::ios::out | std::ios::binary);
+
+  if (!out_file) {
+    std::cerr << "Error opened file" << std::endl;
+    return 1;
+  }
+
+  if (!compressed.empty()) 
+    out_file.write(reinterpret_cast<const char*>(compressed.data()), 
+                                                  compressed.size());
+  
+  out_file.close();
+  return 0;
+}
