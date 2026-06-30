@@ -14,10 +14,10 @@ void encode_archive(const std::vector<std::string>& args){ // функция д�
   // args[0] - path
   // args[1] - new_name
 
-  std::vector<char> result = get_binary_file(args[0]);
+  std::vector<char> binary = get_binary_file(args[0]);
+  encode_binary(binary);
 
-
-  std::cout << args[0] << " " << args[1] << " encode_archive" << std::endl;
+  std::cout << " encode_archive" << std::endl;
 }; 
 
 void decode_archive(const std::vector<std::string>& args){}; // функция для распаковки архива 
