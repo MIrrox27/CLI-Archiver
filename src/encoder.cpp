@@ -25,9 +25,12 @@ std::vector<char> get_binary_file(std::string path) {
 std::vector<char> encode_binary(std::vector<char> binary_file){
   std::vector<char> compressed;
 
-  // надо записать первые 3 байта своими символами, чтобы понимать что этот архив мой
+  // Надо записать первые 3 байта своими символами, чтобы понимать что этот архив мой
+  std::string AXA = "AXA";
+  for (char c : AXA) compressed.push_back(static_cast<unsigned char>(c));
 
-  unsigned char current_bite = binary_file[0];
+
+  unsigned char current_bite = static_cast<unsigned char>(binary_file[0]);
   int counter = 1;
 
   for (int i = 1; i < binary_file.size(); ++i){
@@ -41,7 +44,7 @@ std::vector<char> encode_binary(std::vector<char> binary_file){
       counter = 1;
     }
     current_bite = bite;
-
   }
+  return compressed; // сжатый архив 
 
 }
