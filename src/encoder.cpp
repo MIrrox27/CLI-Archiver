@@ -37,7 +37,7 @@ std::vector<unsigned char> encode_binary(std::vector<char> binary_file){
 
   for (int i = 1; i < binary_file.size(); ++i){
     unsigned char bite = static_cast<unsigned char>(binary_file[i]);
-    if (bite == current_bite && counter < 256) { // если байт совпадает с пердыдущим увеличиваем счетчик 
+    if (bite == current_bite && counter < 255) { // если байт совпадает с пердыдущим увеличиваем счетчик 
       counter++;
     }
     else { // записываем в compressed байты в формате "счетчик байт" и обнуляем счетчик 
