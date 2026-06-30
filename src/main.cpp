@@ -16,13 +16,14 @@ void encode_archive(const std::vector<std::string>& args){ // функция д�
 
   std::vector<char> binary = get_binary_file(args[0]);
   std::vector<unsigned char> encode_bites = encode_binary(binary);
-  int write_file = wright_encode_to_file(encode_bites, args[1]);
+  int write_file = wright_encode_to_file(encode_bites, args[1]+".archive");
 
   if (write_file != 0) 
     std::cerr << "Error with make archive" << std::endl;
-  else 
-    std::cout << "Building complete! File: " << args[1] << std::endl;
-
+  else {
+    std::cout << "Building complete! File: " << args[1]+".archive" << std::endl;
+    std::cout << " -- Program ended without errors..." << std::endl;
+  }
 }; 
 
 void decode_archive(const std::vector<std::string>& args){}; // функция для распаковки архива 
@@ -36,10 +37,11 @@ int main(int argc, char* argv[]) {
   tags["-c"] = encode_archive;
   tags["-d "] = decode_archive;
 
-  std::cout << argc << std::endl;
-  std::cout << argv[1] << std::endl;
-  std::cout << argv[2] << std::endl;
-  std::cout << argv[3] << std::endl;
+  std::cout << "Got arguments: " << argc << std::endl;
+  std::cout << "Command: " << argv[0];
+  std::cout << " " << argv[1];
+  std::cout << " " << argv[2];
+  std::cout << " " << argv[3] << std::endl;
     
   std::string tag = argv[1];
   std::string path = argv[2];
@@ -49,8 +51,6 @@ int main(int argc, char* argv[]) {
   std::vector<std::string> args = {path, name};
   if (tags.find(tag) != tags.end()) tags[tag](args);
   else std::cerr << "Invalid arg: " << tag << std::endl;
-  
-  
-  std::cout << " -- Program ended without errors..." << std::endl;
+
   return 0;
 }
