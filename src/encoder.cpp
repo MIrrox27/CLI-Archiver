@@ -58,7 +58,7 @@ std::vector<unsigned char> encode_binary(std::vector<char> binary_file){
 
 }
 
-int wright_encode_to_file(std::vector<unsigned char> compressed, std::string name){
+int wright_encode_to_archive(std::vector<unsigned char> compressed, std::string name){
   std::cout << "Starting make archive..." << std::endl;
   std::ofstream out_file(name, std::ios::out | std::ios::binary);
 
