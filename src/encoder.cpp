@@ -63,7 +63,7 @@ int wright_encode_to_archive(std::vector<unsigned char> compressed, std::string 
   std::ofstream out_file(name, std::ios::out | std::ios::binary);
 
   if (!out_file) {
-    std::cerr << "Error opened file" << std::endl;
+    std::cerr << "Error opened archive" << std::endl;
     return 1;
   }
 
