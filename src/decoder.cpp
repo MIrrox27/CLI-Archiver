@@ -60,4 +60,21 @@ std::vector<unsigned char> decode_binary(std::vector<char> binary_archive){
 
 
 
-int wright_decode_to_file (std::vector<unsigned char> compressed, std::string name);
+int wright_decode_to_file (std::vector<unsigned char> compressed, std::string name){
+  std::cout << "Starting make file " << name << std::endl;
+  std::ofstream out_file(name, std::ios::out | std::ios::binary);
+
+  if (!out_file) {
+    std::cerr << "Error opened file" << std::endl;
+    return 1;
+  }
+
+  if (!compressed.empty()) 
+    out_file.write(reinterpret_cast<const char*>(compressed.data()), 
+                                                  compressed.size());
+  
+  out_file.close();
+  return 0;
+
+
+}
