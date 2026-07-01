@@ -46,10 +46,10 @@ std::vector<unsigned char> decode_binary(std::vector<char> binary_archive){
   unsigned char bite;
   std::cout << std::endl << "\n - Encode bites: ";
   for (int i = AXA.size(); i < binary_archive.size(); i+=2){
-    counter = static_cast<int>(binary_archive[i]); // первый байт всегда счетчик
+    counter = static_cast<int>(static_cast<unsigned char>(binary_archive[i])); // первый байт всегда счетчик
     bite = binary_archive[i + 1]; // после уже сам символ
     std::cout << counter << " " << (int)bite << " " ;
-    for (int j = 0; i < counter; ++i) compressed.push_back(bite);
+    for (int j = 0; j < counter; ++j) compressed.push_back(bite);
   }
   std::cout <<"\n\n - Decode bites: ";
   for (unsigned char c : compressed) std::cout << static_cast<int>(c) << " ";
