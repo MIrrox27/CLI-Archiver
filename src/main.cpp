@@ -50,9 +50,9 @@ void encode_archive(const std::vector<std::string>& args){ // функция д�
   std::vector<char> binary_file = get_binary_file(args[0]);
   if (binary_file.empty()) return;
   std::vector<unsigned char> encode_bites = encode_binary(binary_file);
-  int write_file = wright_encode_to_file(encode_bites, args[1]+".archive");
+  int write_archive = wright_encode_to_archive(encode_bites, args[1]+".archive");
 
-  if (write_file != 0) 
+  if (write_archive != 0) 
     std::cerr << "Error with make archive" << std::endl;
   else {
     std::cout << "Building complete! File: " << args[1]+".archive" << std::endl;
@@ -69,7 +69,14 @@ void decode_archive(const std::vector<std::string>& args){
   std::vector<char> binary_archive = get_binary_archive(args[0]);
   if (binary_archive.empty()) return;
   std::vector<unsigned char> decode_bites = decode_binary(binary_archive);
+  int write_file = wright_decode_to_file(decode_bites, args[1]);
 
+  if (write_file != 0) 
+    std::cerr << "Error with make archive" << std::endl;
+  else {
+    std::cout << "Building complete! File: " << args[1]+".archive" << std::endl;
+    std::cout << " -- Program ended without errors..." << std::endl;
+  }
 
 
 
