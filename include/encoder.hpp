@@ -4,8 +4,8 @@
 #ifndef ENCODER_HPP
 #define ENCODER_HPP
 
-#include <fstream>
 #include <string>
+#include <vector>
 
 
 std::vector<char> get_binary_file(std::string path);
