@@ -17,6 +17,8 @@ void decode_archive(const std::vector<std::string>& args);
 
 
 int main(int argc, char* argv[]) {
+  std::cout << " -- Author https://github.com/MIrrox27/CLI-Archiver --\n -- Thank you for using my project -- \n" << std::endl;
+
   using Callback = std::function<void(std::vector<std::string>)>; // Тип данных для функций
 
   std::map<std::string, Callback> tags;
