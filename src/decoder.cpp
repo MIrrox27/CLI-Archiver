@@ -41,7 +41,6 @@ std::vector<unsigned char> decode_binary(std::vector<char> binary_archive){
       return {};
     }
   }
-  //std::cout << AXA.size() << " " << binary_archive.size() << " " << binary_archive.size() - AXA.size() << std::endl;
   int counter; 
   unsigned char bite;
   std::cout << std::endl << "\n - Encode bites: ";
