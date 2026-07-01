@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-std::vector<char> get_encode_file(std::string path){
+std::vector<char> get_binary_archive(std::string path){
   std::cout << "Open archive " << path << std::endl;
 
   std::ifstream file(path, std::ios::binary);
@@ -27,7 +27,37 @@ std::vector<char> get_encode_file(std::string path){
 }
 
 
+std::vector<unsigned char> decode_binary(std::vector<char> binary_archive){
+  //for (unsigned char c : binary_archive) std::cout << static_cast<int>(c) << " ";
+  std::cout << "Starting decode information..." << std::endl;
+  std::vector<unsigned char> compressed;
+  
+  std::string str_AXA = "AXA";
+  std::vector<unsigned char> AXA(str_AXA.begin(), str_AXA.end());
+  
+  for (int i = 0; i < AXA.size(); ++i){
+    if (binary_archive[i] != AXA[i]){
+      std::cerr << "Invalid archive" << std::endl;
+      return {};
+    }
+  }
+  //std::cout << AXA.size() << " " << binary_archive.size() << " " << binary_archive.size() - AXA.size() << std::endl;
+  int counter; 
+  unsigned char bite;
+  std::cout << std::endl << "\n - Encode bites: ";
+  for (int i = AXA.size(); i < binary_archive.size(); i+=2){
+    counter = static_cast<int>(binary_archive[i]); // первый байт всегда счетчик
+    bite = binary_archive[i + 1]; // после уже сам символ
+    std::cout << counter << " " << (int)bite << " " ;
+    for (int j = 0; i < counter; ++i) compressed.push_back(bite);
+  }
+  std::cout <<"\n\n - Decode bites: ";
+  for (unsigned char c : compressed) std::cout << static_cast<int>(c) << " ";
+  
+  std::cout << std::endl << "\nDecode information was ended" << std::endl;
+  return compressed;
+}
 
 
-std::vector<unsigned char> decode_binary(std::vector<char> binary);
+
 int wright_decode_to_file (std::vector<unsigned char> compressed, std::string name);
